@@ -11,37 +11,41 @@ import './App.css'
   }
 
 
-function Square() {
-  const [value, setValue] = useState(null)
-
-  function handleclick () {
-    setValue('X')
-  }
+function Square({value, onSquareClick}) {
+  
   return (
     <>
-      <button style={ButtonStyles} className='square ' onClick={handleclick}>{value}</button>
+      <button style={ButtonStyles} onClick={onSquareClick}>
+        {value}
+        </button>
     </>
   )
 }
 
 function Board() {
   const [square, setSquare] = useState(Array(9).fill(null));
+
+  function handleClick () {
+    const nextSquare = square.slice();
+    nextSquare[0] = 'X';
+    setSquare(nextSquare);
+  }
   return (
       <>
       <div className='board-row'>
-        <Square value={square[0]}/>
-        <Square value={square[1]}/>
-        <Square value={square[2]}/>
+        <Square value={square[0]} onSquareClick={handleClick}/>
+        <Square value={square[1]} onSquareClick={handleClick}/>
+        <Square value={square[2]} onSquareClick={handleClick}/>
       </div>
       <div className='board-row'>
-        <Square value={square[3]}/>
-        <Square value={square[4]}/>
-        <Square value={square[5]}/>
+        <Square value={square[3]} onSquareClick={handleClick}/>
+        <Square value={square[4]} onSquareClick={handleClick}/>
+        <Square value={square[5]} onSquareClick={handleClick}/>
       </div>
       <div className='board-row'>
-        <Square value={square[6]}/>
-        <Square value={square[7]}/>
-        <Square value={square[8]}/>
+        <Square value={square[6]} onSquareClick={handleClick}/>
+        <Square value={square[7]} onSquareClick={handleClick}/>
+        <Square value={square[8]} onSquareClick={handleClick}/>
       </div> 
       
       </>
